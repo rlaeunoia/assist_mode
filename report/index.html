@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+
+    <!-- 기존 CSS -->
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- D-DIN 폰트 -->
+    <link href="https://fonts.cdnfonts.com/css/d-din" rel="stylesheet" />
+
+    <!-- 오버레이 & 폰트 세팅용 추가 스타일 -->
+    <style>
+      body {
+        font-family: 'D-DIN Condensed', sans-serif;
+      }
+
+      .report-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        z-index: 999;
+      }
+
+      .report-overlay.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* 뒤 컨텐츠 블러 */
+      .element.report-blur {
+        filter: blur(8px);
+        transition: filter 0.4s ease;
+      }
+
+      /* 가운데 텍스트 정렬용 래퍼 */
+      .report-overlay-inner {
+  text-align: center;
+  padding: 0 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 여기 숫자만 바꾸면 전체 간격이 한 번에 조절됨 */
+  gap: 50px;
+}
+
+      /* 영어 메인 메시지 → SVG 이미지 */
+      .report-message-img {
+        max-width: min(70vw, 900px);
+        height: auto;
+        display: block;
+        margin: 0;
+      }
+
+      /* 한글 작은 문장 */
+      .report-overlay-sub {
+        font-family: 'D-DIN Condensed', Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.6;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+      }
+
+      /* BACK TO START 버튼 – 헬베티카 + 톤다운 클릭 느낌 */
+      .report-overlay-back {
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0em;
+        padding: 10px 32px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        background: #ffffff;
+        color: #111111;
+        text-transform: uppercase;
+        cursor: none;
+        transition:
+          background-color 0.15s ease,
+          transform 0.08s ease,
+          box-shadow 0.15s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      }
+
+      .report-overlay-back:hover {
+  background: #f0f0f0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.4);
+  transform: translateY(1px);
+}
+
+      .report-overlay-back:active {
+        background-color: #e4e4e4; /* 눌렸을 때만 조금 더 진해짐 */
+        transform: translateY(2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+      }
+
+      /* MESSAGE 버튼도 클릭 느낌 나게(혹시 스타일 없으면 대비) */
+      .div-wrapper {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage-root">
+      <div class="element">
+        <div class="final-report">
+          <div class="text-wrapper">SYNTHESIS OF YOUR AUTONOMY </div>
+          <p class="FIND-before-it-FINDS">FIND BEFORE IT FINDS FOR YOU</p>
+          <p class="across-three-tasks">
+            ACROSS THREE TASKS, YOUR AUTHORSHIP MOVED, BENT, <br />AND
+            OCCASIONALLY FADED. THIS REPORT GATHERS THOSE MOVEMENTS AND RENDERS
+            THEM INTO A SINGLE VIEW.
+          </p>
+
+          <img class="FINAL-REPORT" src="img/FINAL REPORT.svg" />
+
+          <!-- ▼ STAGE 1 카드 -->
+          <div class="stage-card stage-card-1">
+            <img class="frame" src="img/stage1.svg" />
+            <div class="stage-card-inner">
+              <img
+                class="stage-thumb stage-thumb-1"
+                src="img/stage1-fixed.png"
+                alt=""
+              />
+              <div class="stage-summary stage-summary-1"></div>
+            </div>
+          </div>
+
+          <!-- ▼ STAGE 3 카드 -->
+          <div class="stage-card stage-card-3">
+            <img class="img" src="img/stage3.svg" />
+            <div class="stage-card-inner">
+              <img
+                class="stage-thumb stage-thumb-3"
+                src="img/stage3-fixed.png"
+                alt=""
+              />
+              <div class="stage-summary stage-summary-3"></div>
+            </div>
+          </div>
+
+          <!-- ▼ STAGE 2 카드 -->
+          <div class="stage-card stage-card-2">
+            <img class="frame-2" src="img/stage2.svg" />
+            <div class="stage-card-inner">
+              <img
+                class="stage-thumb stage-thumb-2"
+                src="img/stage2-cap.png"
+                alt=""
+              />
+              <div class="stage-summary stage-summary-2"></div>
+            </div>
+          </div>
+
+          <!-- MESSAGE 버튼 -->
+          <div class="div-wrapper">
+            <div class="div">MESSAGE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 오버레이 -->
+    <div class="report-overlay" id="message-overlay">
+      <div class="report-overlay-inner">
+        <!-- 메인 메시지 SVG -->
+        <img
+          src="img/message.svg"
+          alt="THE WORK WAS COMPLETED. THE SELF WAS NOT."
+          class="report-message-img"
+        />
+        <!-- 한글 문장 교체 -->
+        <p class="report-overlay-sub">
+          AI로 편해지는 만큼, 내가 남길 흔적은 옅어지고 있지 않을까?
+        </p>
+        <button class="report-overlay-back" id="back-to-start">
+          BACK TO START
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const REPORT_KEY = "autonomy-report-v1";
+
+      function loadReport() {
+        try {
+          const raw = localStorage.getItem(REPORT_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          console.warn("Failed to parse report data:", e);
+          return {};
+        }
+      }
+
+      function saveReport(data) {
+        try {
+          localStorage.setItem(REPORT_KEY, JSON.stringify(data));
+        } catch (e) {
+          console.warn("Failed to save report data:", e);
+        }
+      }
+
+      function fmtPercent(v) {
+        if (v === null || v === undefined || isNaN(v)) return "-";
+        return Math.round(v) + "%";
+      }
+
+      function describeShift(start, end) {
+        if (start == null || end == null || isNaN(start) || isNaN(end)) return "";
+        const diff = end - start;
+        if (Math.abs(diff) < 10) {
+          return "You kept intervention almost constant.";
+        }
+        if (diff > 0) {
+          return "You gradually invited more intervention as you went.";
+        }
+        return "You reduced intervention and kept more of your own output.";
+      }
+
+      // 1920×1080 스케일
+      (function () {
+        const stage = document.querySelector(".stage-root");
+        const el = document.querySelector(".element");
+        if (!stage || !el) return;
+
+        function resize() {
+          const baseWidth = 1920;
+          const baseHeight = 1080;
+
+          const rootWidth = stage.clientWidth || window.innerWidth;
+          const rootHeight = stage.clientHeight || window.innerHeight;
+
+          const scale = Math.min(rootWidth / baseWidth, rootHeight / baseHeight);
+
+          const scaledWidth = baseWidth * scale;
+          const scaledHeight = baseHeight * scale;
+
+          const offsetX = (rootWidth - scaledWidth) / 2;
+          const offsetY = (rootHeight - scaledHeight) / 2;
+
+          el.style.width = baseWidth + "px";
+          el.style.height = baseHeight + "px";
+          el.style.transformOrigin = "top left";
+          el.style.transform =
+            "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+      })();
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const data = loadReport();
+        console.log("Final report data:", data);
+
+        const thumb1 = document.querySelector(".stage-thumb-1");
+        const thumb2 = document.querySelector(".stage-thumb-2");
+        const thumb3 = document.querySelector(".stage-thumb-3");
+
+        //if (thumb2 && data.stage2Thumb) {
+        //  thumb2.src = data.stage2Thumb;
+        //}
+
+        const s1Box = document.querySelector(".stage-summary-1");
+        const s2Box = document.querySelector(".stage-summary-2");
+        const s3Box = document.querySelector(".stage-summary-3");
+
+        // STAGE 1
+        if (s1Box) {
+          if (!data.stage1) {
+            s1Box.innerHTML =
+              "No data was stored for Stage 1.<br>" +
+              "Restart from the beginning to see your reasoning profile.";
+          } else {
+            const s = data.stage1;
+            const maxI = s.maxIntervention;
+            const usedH = !!s.usedHint;
+            const usedS = !!s.usedSolve;
+            const correct = s.correct ?? 0;
+            const wrong = s.wrong ?? 0;
+
+            const rangeLine =
+              maxI != null
+                ? `You pushed intervention up to <b>${fmtPercent(
+                    maxI
+                  )}</b> while solving logic puzzles.`
+                : "You adjusted intervention at least once while solving logic puzzles.";
+
+            let assistLine = "";
+            if (usedH && usedS) {
+              assistLine =
+                "You both asked for hints and let the system fully solve at least one problem.";
+            } else if (usedH && !usedS) {
+              assistLine =
+                "You used hints but never fully handed the solution over.";
+            } else if (!usedH && usedS) {
+              assistLine =
+                "You skipped hints and went straight to full system solve at least once.";
+            } else {
+              assistLine =
+                "You never asked for hints or full solve — you kept the reasoning entirely yours.";
+            }
+
+            const scoreLine = `Score: <b>${correct}</b> correct / <b>${wrong}</b> wrong.`;
+
+            s1Box.innerHTML =
+              rangeLine + "<br>" + assistLine + "<br>" + scoreLine;
+          }
+        }
+
+        // STAGE 2
+        if (s2Box) {
+          if (!data.stage2) {
+            s2Box.innerHTML =
+              "No drawing data was stored for Stage 2.<br>" +
+              "Draw your apple at least once to see how the system corrected it.";
+          } else {
+            const s = data.stage2;
+            const start = s.aiAtFirstStroke;
+            const end = s.aiAtNext;
+            const count = s.strokeCount ?? 0;
+
+            const startEndLine =
+              start != null && end != null
+                ? `You began drawing at about <b>${fmtPercent(
+                    start
+                  )}</b> and finished around <b>${fmtPercent(end)}</b>.`
+                : "You experimented with intervention while drawing your apple.";
+
+            let strokeLine = "";
+            if (count === 0) {
+              strokeLine =
+                "You did not leave enough strokes for the system to rewrite.";
+            } else if (count === 1) {
+              strokeLine =
+                "You left a single continuous stroke for the system to bend toward its template.";
+            } else {
+              strokeLine = `You left <b>${count}</b> distinct strokes for the system to correct and align.`;
+            }
+
+            const shiftLine = describeShift(start, end);
+            const tail = shiftLine ? shiftLine : strokeLine;
+
+            s2Box.innerHTML = startEndLine + "<br>" + tail;
+          }
+        }
+
+        // STAGE 3
+        if (s3Box) {
+          if (!data.stage3 || !data.stage3.noteCount) {
+            s3Box.innerHTML =
+              "No melody was captured in Stage 3.<br>" +
+              "Play a short phrase and hit REPLAY to see your ghost piano summary.";
+          } else {
+            const s = data.stage3;
+            const first = s.firstReplayLevel;
+            const last = s.lastReplayLevel;
+            const everFull = !!s.everFullAI;
+            const noteCount = s.noteCount ?? 0;
+
+            const replayLine =
+              first != null && last != null
+                ? `You replayed your melody from <b>${fmtPercent(
+                    first
+                  )}</b> to <b>${fmtPercent(last)}</b> intervention.`
+                : "You replayed your melody while adjusting the intervention level.";
+
+            let behaviorLine = "";
+            if (everFull) {
+              behaviorLine = `At one point you let the AI drive most of the phrase, starting from <b>${noteCount}</b> note event(s) you played.`;
+            } else {
+              behaviorLine = `You kept intervention below full AI, so phrasing stayed mostly yours across <b>${noteCount}</b> note event(s).`;
+            }
+
+            s3Box.innerHTML = replayLine + "<br>" + behaviorLine;
+          }
+        }
+
+        // MESSAGE 버튼 → 오버레이 & 리셋
+        const msgBtnWrapper = document.querySelector(".div-wrapper");
+        const overlay = document.getElementById("message-overlay");
+        const backBtn = document.getElementById("back-to-start");
+        const elementRoot = document.querySelector(".element");
+
+        if (msgBtnWrapper && overlay && backBtn && elementRoot) {
+          msgBtnWrapper.addEventListener("click", function () {
+            elementRoot.classList.add("report-blur");
+            overlay.classList.add("is-visible");
+          });
+
+          backBtn.addEventListener("click", function () {
+            try {
+              localStorage.removeItem(REPORT_KEY);
+            } catch (e) {
+              console.warn("Failed to clear report data on reset:", e);
+            }
+            // 인트로 페이지로
+            window.location.href = "../index.html";
+          });
+        }
+      });
+    </script>
+
+      <!-- 커스텀 커서 -->
+  <div class="draw-cursor"></div>
+
+  <script>
+    (function () {
+      const cursor = document.querySelector(".draw-cursor");
+      if (!cursor) return;
+
+      // SVG 기준점 살짝 보정 (필요하면 숫자 조절)
+      const OFFSET_X = 5;
+      const OFFSET_Y = 5;
+
+      window.addEventListener("pointermove", function (e) {
+        cursor.style.left = (e.clientX - OFFSET_X) + "px";
+        cursor.style.top  = (e.clientY - OFFSET_Y) + "px";
+      });
+    })();
+  </script>
+  </body>
+</html>

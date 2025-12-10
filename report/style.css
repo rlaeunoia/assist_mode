@@ -1,0 +1,369 @@
+.final-report {
+    background-color: #ffffff;
+    width: 100%;
+    min-width: 1920px;
+    min-height: 1080px;
+    position: relative;
+}
+.final-report .text-wrapper {
+    position: absolute;
+    left: 358px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.final-report .FIND-before-it-FINDS {
+    position: absolute;
+    left: 668px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.final-report .across-three-tasks {
+    position: absolute;
+    left: 1283px;
+    top: 40px;
+    width: 587px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    line-height: 27px;
+}
+.final-report .FINAL-REPORT {
+    position: absolute;
+    width: calc(100% - 1675px);
+    top: 49px;
+    left: 51px;
+    height: 156px;
+}
+.final-report .frame {
+    top: 326px;
+    left: 51px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .img {
+    top: 326px;
+    left: 1283px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .frame-2 {
+    top: 218px;
+    left: 667px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .div-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 30px;
+    position: absolute;
+    top: 969px;
+    left: calc(50.00% - 116px);
+    background-color: #121212;
+    border-radius: 100px;
+}
+.final-report .div {
+    position: relative;
+    width: fit-content;
+    margin-top: -3.00px;
+    font-family: "Pretendard-Medium", Helvetica;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: -0.50px;
+    line-height: 32.5px;
+    white-space: nowrap;
+}
+   .final-report {
+    background-color: #ffffff;
+    width: 100%;
+    min-width: 1920px;
+    min-height: 1080px;
+    position: relative;
+}
+.final-report .text-wrapper {
+    position: absolute;
+    left: 358px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.final-report .FIND-before-it-FINDS {
+    position: absolute;
+    left: 668px;
+    top: 40px;
+    width: 277px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 30px;
+    letter-spacing: -0.60px;
+    line-height: 39.0px;
+}
+.final-report .across-three-tasks {
+    position: absolute;
+    left: 1283px;
+    top: 40px;
+    width: 587px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #121212;
+    font-size: 18px;
+    letter-spacing: -0.36px;
+    line-height: 27px;
+}
+.final-report .FINAL-REPORT {
+    position: absolute;
+    width: calc(100% - 1675px);
+    top: 49px;
+    left: 51px;
+    height: 156px;
+}
+.final-report .frame {
+    top: 326px;
+    left: 51px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .img {
+    top: 326px;
+    left: 1283px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .frame-2 {
+    top: 218px;
+    left: 667px;
+    position: absolute;
+    width: 584px;
+    height: 704px;
+}
+.final-report .div-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 30px;
+    position: absolute;
+    top: 969px;
+    left: calc(50.00% - 116px);
+    background-color: #121212;
+    border-radius: 100px;
+}
+.final-report .div {
+    position: relative;
+    width: fit-content;
+    margin-top: -3.00px;
+    font-family: "Pretendard-Medium", Helvetica;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: -0.50px;
+    line-height: 32.5px;
+    white-space: nowrap;
+}
+
+/* ===========================
+   FINAL REPORT 전용 전체 레이아웃
+   =========================== */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;  /* 리포트 페이지에서 스크롤 없애기 */
+}
+
+/* stage-root / element는 JS에서 1920x1080 고정 스케일링할 컨테이너 */
+.stage-root {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.element {
+    position: absolute;  /* JS에서 translate + scale로 중앙 정렬 */
+    top: 0;
+    left: 0;
+}
+
+/* ===========================
+   STAGE SVG 카드 오버레이
+   =========================== */
+
+/* 각 stage SVG를 감싸는 카드 래퍼 */
+.stage-card {
+    position: relative;
+    display: inline-block;
+}
+
+/* SVG들은 여전히 .final-report에서 절대 위치라,
+   여기선 display만 보장 */
+.stage-card .frame,
+.stage-card .frame-2,
+.stage-card .img {
+    display: block;
+}
+
+/* SVG 안쪽에 들어가는 오버레이 컨테이너
+   - 위: 썸네일
+   - 아래: 요약 텍스트
+*/
+.stage-card-inner {
+    position: absolute;
+    inset: 15% 10%;   /* SVG 테두리에서 조금 안쪽으로 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    pointer-events: none;  /* 아래 SVG 클릭/호버 방해 안 함 */
+}
+
+/* ===== FINAL REPORT 레이아웃 공통 ===== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;        /* 스크롤 제거 */
+}
+
+.stage-root {
+  width: 100vw;
+  height: 100vh;           /* 항상 뷰포트 꽉 채우기 */
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-root .element {
+  position: absolute;      /* JS에서 translate + scale로 중앙 정렬 */
+  top: 0;
+  left: 0;
+}
+
+/* ===== FINAL REPORT – Stage 카드 배치 ===== */
+
+/* 카드 전체 래퍼 */
+.final-report .stage-card {
+  position: absolute;
+}
+
+/* STAGE #1 카드: 원래 stage1.svg 위치/사이즈 */
+.final-report .stage-card-1 {
+  top: 326px;
+  left: 51px;
+  width: 584px;
+  height: 704px;
+}
+
+/* STAGE #2 카드 */
+.final-report .stage-card-2 {
+  top: 218px;
+  left: 667px;
+  width: 584px;
+  height: 704px;
+}
+
+/* STAGE #3 카드 */
+.final-report .stage-card-3 {
+  top: 326px;
+  left: 1283px;
+  width: 584px;
+  height: 704px;
+}
+
+/* 카드 안에서 SVG는 카드 전체를 꽉 채우도록 */
+.final-report .stage-card-1 .frame,
+.final-report .stage-card-2 .frame-2,
+.final-report .stage-card-3 .img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* SVG 위에 올라가는 내용 컨테이너 */
+.stage-card-inner {
+  position: absolute;
+  inset: 15% 10%;              /* 카드 안쪽 여백 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  pointer-events: none;        /* 아래 SVG 인터랙션 방해 X */
+  z-index: 1;                  /* SVG 위에 보이도록 */
+}
+
+/* 각 스테이지 캡처 썸네일 – 컨테이너 폭을 꽉 채우도록 */
+.stage-thumb {
+    width: 100%;        
+    max-width: 100%;   
+    height: auto;
+    margin-bottom: 12px;
+    display: block;
+}
+
+/* 리포트 요약 텍스트 */
+.stage-summary {
+    font-family: "Helvetica-Regular", Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  
+    width: 95%;
+    align-self: center;
+    text-align: left;
+  
+    color: #121212;          
+    
+    margin-top: 60px;      
+  }
+
+.stage-card-2 .stage-summary {
+    color: #ffffff;        
+  }
+  
+  .stage-summary b {
+    font-family: "D-DIN Condensed-DINCondensed-Bold", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+  .draw-cursor {
+    position: fixed;
+    width: 72px;   
+    height: 72px;
+    background: url("img/cursor.svg") no-repeat center / contain;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
